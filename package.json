@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.1",
     "axios": "^0.26.1",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.1",
+    "autoprefixer": "^10.4.7",
     "eslint": "8.12.0",
-    "eslint-config-next": "12.1.4"
+    "eslint-config-next": "12.1.4",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24"
   }
 }

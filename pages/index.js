@@ -165,19 +165,20 @@ const Home = () => {
         {isUserLoggedIn && items.map(
             (item) => {
 
-              const imageUrl = item.image?.src || item.top_image_url;
+              const imageUrl = item?.image?.src || item?.top_image_url;
 
               let title = item.resolved_title || item.given_title || '';
               if(title.length > 30) {
                 title = title.substring(0, 19) + '...';
               }
 
-              const source = item.domain_metadata?.name ||
-                item.resolved_url.match(/:\/\/(?:www\.)?([\w\d]+\.\w+)/)[1];
+              const source = item?.domain_metadata?.name
+                || (item?.resolved_url?.match(/:\/\/(?:www\.)?([\w\d]+\.\w+)/) || [])[1]
+                || '';
 
               return (
-                <div key={item.item_id} className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                  <a href={item.resolved_url} target="_blank" rel="noreferrer">  
+                <div key={item?.item_id} className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+                  <a href={item?.resolved_url} target="_blank" rel="noreferrer">  
                     <div
                       className="hover:grow hover:shadow-lg w-full h-40 bg-cover bg-center bg-slate-200"
                       style={imageUrl ? { backgroundImage: `url('${imageUrl}')` } : undefined}
@@ -187,7 +188,7 @@ const Home = () => {
                         {title}
                       </p>
 
-                      <span onClick={handleArchiveClick(item.item_id)}>
+                      <span onClick={handleArchiveClick(item?.item_id)}>
                         <ArchiveIcon />
                       </span>
                     </div>

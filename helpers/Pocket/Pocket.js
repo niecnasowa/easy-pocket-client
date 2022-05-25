@@ -124,6 +124,26 @@ export class Pocket {
     });
   }
 
+  add = (options) => {
+    const accessToken = this.accessToken;
+
+    return axios.post(
+      '/api/pocket-add',
+      {
+        access_token: accessToken,
+        ...options,
+      },
+    )
+    .then((response) => {
+      const { data } = response;
+
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   getIsUserLoggedIn = () => {
     if(typeof window === 'undefined') {
       return false;

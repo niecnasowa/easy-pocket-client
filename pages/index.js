@@ -63,6 +63,14 @@ const Home = () => {
     loadItems();
   };
 
+  const handleReAddClick = (id) =>  async (e) => {
+    e.preventDefault();
+
+    await pocket.modify({ actions: [{ action: 'readd', item_id: id }] });
+
+    loadItems();
+  };
+
   const handleAddItem = async (newUrl) => {
     const data = await pocket.add({ url: newUrl });
 
@@ -111,12 +119,12 @@ const Home = () => {
             <span className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl">
               List
               {searchValue && (
-                <span className="font-normal text-lg normal-case">
+                <span className="font-normal text-lg normal-case cursor-pointer" onClick={() => setSearchValue('')}>
                   {' '} [filtering: {searchValue}]
                 </span>
               )}
               {isShowingArchive && (
-                <span className="font-normal text-lg normal-case">
+                <span className="font-normal text-lg normal-case cursor-pointer" onClick={handleToggleArchive}>
                   {' '} [archive]
                 </span>
               )} 
@@ -165,7 +173,8 @@ const Home = () => {
             <Item
               key={item?.item_id}
               item={item}
-              onArchiveClick={handleArchiveClick(item?.item_id)}
+              onArchiveClick={!isShowingArchive ? handleArchiveClick(item?.item_id) : undefined}
+              onReAddClick={isShowingArchive ? handleReAddClick(item?.item_id) : undefined}
             />
           ),
         )}

@@ -1,6 +1,7 @@
+import AddIcon from '../icons/AddIcon';
 import ArchiveIcon from '../icons/ArchiveIcon';
 
-const Item = ({ item, onArchiveClick }) => {
+const Item = ({ item, onArchiveClick, onReAddClick }) => {
   const imageUrl = item?.image?.src || item?.top_image_url;
 
   let title = item.resolved_title || item.given_title || '';
@@ -24,9 +25,17 @@ const Item = ({ item, onArchiveClick }) => {
             {title}
           </p>
 
-          <span onClick={onArchiveClick}>
-            <ArchiveIcon color="gray-500" />
-          </span>
+          {onArchiveClick && (
+            <span onClick={onArchiveClick}>
+              <ArchiveIcon color="gray-500" />
+            </span>
+          )}
+
+          {onReAddClick && (
+            <span onClick={onReAddClick}>
+              <AddIcon color="gray-500" />
+            </span>
+          )}
         </div>
         <p className="pt-1 text-gray-900">
           {source}

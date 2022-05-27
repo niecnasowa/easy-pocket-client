@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
                     <p>
                       <a
                         className="inline-block no-underline hover:text-black hover:underline py-1"
-                        href="https://github.com/niecnasowa"
+                        href="https://sowa.pm"
                         target="_blank"
                         rel="noreferrer"
                       >
